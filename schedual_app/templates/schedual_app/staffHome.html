@@ -1,9 +1,16 @@
 {% extends 'schedual_app/base.html' %}
 {% load crispy_forms_tags %}
+
 {% block content %}
-<form method="post" action="/staffHome/">
-    {% csrf_token %}
-    {{form|crispy}}
-    <button type="sumbit", name="save">Add</button>
-</form>
+    {% if user.is_authenticated and user.profile.role.staff_credentials == True %}
+        <form method="post" action="/staffHome/">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="sumbit", name="save">Add</button>
+        </form>
+    {% elif user.is_authenticated and user.profile.role.staff_credentials != True %}
+        <p>Only staff can access this page</p>
+    {% else %}
+        <p>If you are from staff login <a href="/login">here</a></p>
+    {% endif %}
 {% endblock %}
