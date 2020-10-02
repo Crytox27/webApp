@@ -1,0 +1,9 @@
+{% extends 'schedual_app/base.html' %}
+{% block content %}
+    <h1>{{proj.year}}</h1>
+    <ul>
+        {% for auditory in proj.auditories.all %}
+            <li>{{auditory.number}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

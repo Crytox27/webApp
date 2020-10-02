@@ -11,6 +11,7 @@ class Profile(models.Model):
 class Teacher(models.Model):
     full_name = models.CharField(max_length=200)
     profile = models.OneToOneField('Profile', on_delete=models.CASCADE, null=True, blank=True)
+    project = models.ForeignKey('SchedualProject', on_delete=models.CASCADE, null=True, related_name='teachers')
 
     def __str__(self):
         return self.full_name
@@ -45,6 +46,7 @@ class Wish(models.Model):
     fifth_lesson = models.BooleanField(default=False)
     sixth_lesson = models.BooleanField(default=False)
     seventh_lesson = models.BooleanField(default=False)
+    project = models.ForeignKey('SchedualProject', on_delete=models.CASCADE, null=True, related_name='wishes')
 
     def __str__(self):
         return self.discipline.name
@@ -55,6 +57,7 @@ class Role(models.Model):
     teacher_credentials = models.BooleanField(default=False)
     guest_credentials = models.BooleanField(default=True)
 
+
     def __str__(self):
         return self.role_name
 
@@ -63,6 +66,7 @@ class Auditory(models.Model):
     capacity = models.IntegerField()
     computers = models.BooleanField()
     projector = models.BooleanField()
+    project = models.ForeignKey('SchedualProject', on_delete=models.CASCADE, null=True, related_name='auditories')
 
     def __str__(self):
         return str(self.number)
@@ -73,6 +77,7 @@ class Group(models.Model):
     division = models.IntegerField(default=1)
     group = models.IntegerField(default=1)
     student_number = models.IntegerField()
+    project = models.ForeignKey('SchedualProject', on_delete=models.CASCADE, null=True, related_name='groups')
 
     def __str__(self):
         return str(self.number)

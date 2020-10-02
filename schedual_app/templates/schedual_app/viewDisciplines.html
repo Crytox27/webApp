@@ -1,0 +1,9 @@
+{% extends 'schedual_app/base.html' %}
+{% block content %}
+    <h1>{{proj.year}}</h1>
+    <ul>
+        {% for discipline in proj.disciplines.all %}
+            <li>{{discipline.name}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
