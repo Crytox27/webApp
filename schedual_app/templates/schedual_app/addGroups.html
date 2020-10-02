@@ -1,9 +1,8 @@
 {% extends 'schedual_app/base.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
 <form method="post" action="/addGroups/">
     {% csrf_token %}
-    {{form|crispy}}
+    {{form.as_p}}
     <button type="sumbit", name="save">Add</button>
 </form>
 {% endblock %}
